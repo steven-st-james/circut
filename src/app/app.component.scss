@@ -1,0 +1,18 @@
+.main-container {
+    margin-top: 15vh;
+    .two-way-binding {
+        button {
+            margin-right: 10px;
+        }
+    }
+
+    .observable-container {
+        margin-top: 3em;
+        button {
+            margin-left: 10px;
+        }
+        p {
+            font-size: 1em;
+        }
+    }
+}

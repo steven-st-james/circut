@@ -1,37 +1,42 @@
 <div class="main-container">
   <div class="two-way-binding">
+    <p>This uses 2-way data binding</p>
     <button type="button" (click)="decrement()">-</button>
     <button type="button" (click)="increment()">+</button>
     <input type="number" [(ngModel)]="num" />
     <div>
       <p>
-        Click the + or the - button to increase or decrease the number <span style="color:aqua;">{{ num }}</span>
+        Click the + or the - button to increase or decrease the number <span style="color:chucknorris;">{{ num }}</span>
       </p>
+      <hr/>
     </div>
   </div>
   <div class="projection-container">
     <app-projection>
       <h3>Hi I'm content that is added in with projection using ng-content!</h3>
     </app-projection>
+    <hr/>
   </div>
   <div class="pipe-container">
     <div>
       <p>
-        This sentense will be transformed with a pipe! Type a sentense and see
-        the results with every word starts with a capital letter
+        This sentense will be transformed with a pipe! Type and every word will have a dash between it!
       </p>
     </div>
     <form>
       <label for="sentense">Type a Sentence</label>
       <input type="text" name="sentense" [(ngModel)]="sentense" />
     </form>
-    <div>
-      <p>{{ sentense | uppercase }}</p>
+    <div class="pipe-container">
+      <p>{{ sentense | dashes }}</p>
     </div>
+    <hr/>
   </div>
-  <div>
-    <input type="number" [(ngModel)]="first" /><button (click)="handleFirst()">First</button>
-    <input type="number" [(ngModel)]="second" /><button (click)="handleSecond()">Second</button>
-    {{$mergeAll | async}}
+  <div class="observable-container">
+    <input type="number" [(ngModel)]="first"/>
+    <input type="number" [(ngModel)]="second" />
+    <button (click)="getNumbers(first,second)">Calculate</button>
+    <p>This value will be processed with both imputs being transformed to observables and handled with combinedLatest</p>
+    <p class="calculated">{{$mergeAll | async}}</p>
   </div>
 </div>

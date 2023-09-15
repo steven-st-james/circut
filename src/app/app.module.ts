@@ -3,14 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UppercasePipe } from './pipes/uppercase.pipe';
 import { ProjectionComponent } from './components/projection/projection.component';
+import { DashesPipe } from './pipes/dashes.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UppercasePipe,
-    ProjectionComponent
+    ProjectionComponent,
+    DashesPipe
   ],
   imports: [
     BrowserModule,

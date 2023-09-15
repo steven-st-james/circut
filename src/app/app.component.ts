@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {  BehaviorSubject, combineLatest, from, mergeAll, Observable, of, Subject } from 'rxjs';
+import { combineLatest } from 'rxjs';
+import { CalculateService } from './service/calculate.service';
 
 @Component({
   selector: 'app-root',
@@ -7,27 +8,14 @@ import {  BehaviorSubject, combineLatest, from, mergeAll, Observable, of, Subjec
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  
+  constructor( private calculate: CalculateService) {}
   num: number =  0;
   sentense: string = "";
   first: number = 0
   second: number = 0;
-  firstBit = new Subject<number>()
-  secondBit = new Subject<number>()
 
-  handleFirst() {
-    this.firstBit.next(this.first)
-    // this.firstBit.complete()
-    
-  }
-
-  handleSecond() {
-    this.secondBit.next(this.second);
-    // this.secondBit.complete();
-  }
-
-  
-
-  $mergeAll = combineLatest([this.firstBit, this.secondBit], (f, s) => { return f + s})
+  $mergeAll = combineLatest([this.calculate.firstBit, this.calculate.secondBit], (f, s) => { return f + s})
   increment() {
      this.num = this.num + 1;
   }
@@ -36,4 +24,7 @@ export class AppComponent {
      this.num =  this.num -1;
   }
 
+  getNumbers(first?: number, second?: number): void {
+    this.calculate.updateBits({first, second})
+  }
 }
